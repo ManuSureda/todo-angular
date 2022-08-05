@@ -1,0 +1,57 @@
+<h3 class="mb-3">Client List</h3>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Credit Card Type</th>
+        <th scope="col">Credit Card Number</th>
+        <th scope="col">Debt</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clientList" >
+        <th scope="row">{{ client.clientId }}</th>
+        <td>{{ client.fullName }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.credit_card_type }}</td>
+        <td>{{ client.credit_card_number }}</td>
+        <td>{{ client.debt }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<main class="py-5">
+    <h3 class="mb-3">Remove Client</h3>
+    <form [formGroup]="removeForm" (ngSubmit)="onSubmit()" >
+        <div class="bg-light p-4">
+            <div class="form-row">                                                                         
+                <div class="form-group col-lg-3">
+                    <label for="">Client Id</label>
+                    <input type="text" name="clientId" formControlName="clientId" class="form-control form-control-ml" value="">
+                </div>                                      
+            </div>                          
+            <button type="submit" class="btn btn-primary" [disabled]="removeForm.invalid" >Remove</button>
+        </div>                                                     
+    </form>
+
+    <div *ngIf="message">
+      {{ message }}
+    </div>
+
+    <div *ngIf="clientId.invalid && (clientId.dirty || clientId.touched)" class="alert">
+      <div *ngIf="clientId.errors?.required" class="alert alert-danger">
+          Client ID is required.
+      </div>
+      <div *ngIf="clientId.errors?.numbersOnly" class="aler alert-danger">
+        Client ID most be numbers only.
+      </div>
+      <!-- <div *ngIf="clientId.errors?.clientExist" class="aler alert-danger">
+          Client ID does not exist.
+      </div> -->
+    </div>
+    <!-- <div class="alert alert-danger" role="alert" *ngIf="email.errors?.emailExists">
+      This email address is already assigned to another Student
+    </div>   -->
+</main>

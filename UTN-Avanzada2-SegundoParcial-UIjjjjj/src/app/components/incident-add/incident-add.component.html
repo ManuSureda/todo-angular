@@ -1,0 +1,44 @@
+<main class="py-5">
+    <div class="container">
+        <h3 class="mb-3">Create Incident</h3>
+        <form [formGroup]="incidentFormGroup" (ngSubmit)="onSubmit()">
+            <div class="bg-light p-4">
+                <div class="form-row">                                                                         
+                    <div class="form-group col-lg-2">
+                        <label for="">Priority</label>
+                        <select class="form-control form-control-ml" formControlName="priorityId" name="priority">
+                            <option disabled value="">Select Priority...</option>
+                            <option *ngFor="let priority of priorityList" [ngValue]="priority.priorityId">{{ priority.description }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="">Domain</label>
+                        <input type="text" name="domain" class="form-control form-control-ml" formControlName="domain" value="">
+                    </div>
+                    <div class="form-group col-lg-7">
+                        <label for="">Title</label>
+                        <input type="text" name="title" class="form-control form-control-ml" formControlName="title" value="">
+                    </div>                       
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-12">
+                        <label for="">Description</label>
+                        <textarea name="description" class="form-control form-control-ml" formControlName="description" value="" rows="10">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-6">
+                        <label for="">Creator</label>
+                        <input type="text" name="creator" class="form-control form-control-ml" formControlName="creator" value="">                      
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="">Phone Number</label>
+                        <input type="text" name="phoneNumber" class="form-control form-control-ml" formControlName="phoneNumber" value="">
+                    </div>
+                </div>             
+                <button type="submit" class="btn btn-primary" [disabled]="!incidentFormGroup.valid">Submit Incident</button>
+            </div>                                                     
+        </form>
+    </div>
+</main>

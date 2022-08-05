@@ -1,0 +1,13 @@
+hoy veremos como trabajar con formularios dentro de angular, anteriormente utilizabamos 2wayDataBiding 
+
+Angular maneja dos formas de utilizar forms:
+Reactive Forms y el otro Template Driven Forms. pero en esta materia nos centraremos en el primero
+
+PAGINA 64
+
+el [(ngModel)]="variableen.ts" esto viene del "template-driven forms" con lo cual ya no lo vamos a usar 
+
+vos tenes el form control y el form grup, si uno de los form control de un form grup es invalido, el form grup es invalido 
+y despues tenes el form array que es un array de grups 
+
+mirar el ejemplo del profe  

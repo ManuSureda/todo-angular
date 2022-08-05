@@ -1,0 +1,56 @@
+<main class="py-5">
+    <section class="mb-5">
+                                    <!-- el addStudent() por lo general se llama onSubmit()  -->
+         <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
+            <div class="container">
+                <h3 class="mb-3">Add Student</h3>
+                <div class="bg-light p-4">
+                    <div class="row">                                                                         
+                        <div class="col-lg-4">
+                            <label for="">First Name</label>
+                            <input type="text" name="firstName" formControlName="firstName" class="form-control form-control-ml" required value="">
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label for="">Last Name</label>
+                            <input type="text" name="lastName" formControlName="lastName" class="form-control form-control-ml" required value="">
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label for="">DNI</label>
+                            <input type="text" name="dni" formControlName="dni" class="form-control form-control-ml" required value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="">Email</label>
+                            <input type="email" name="email" formControlName="email" class="form-control form-control-ml" required value="">
+                        </div>
+
+                        <div class="col-lg-8">
+                            <label for="">Address</label>
+                            <input type="text" name="address" formControlName="address" class="form-control form-control-ml" required >
+                        </div>
+                    </div> 
+                    {{ message }}
+                    <!-- {{ firstName }} 
+                    {{ lastName }} 
+                    {{ dni }} 
+                    {{ email }} 
+                    {{ address }}  -->
+                    <hr class="mb-4">
+                    <!-- asi lo teniamos antes, cuando lo manejabamos con 2way data byding, 
+                        <button type="button" class="btn btn-primary" (click)="addStudent()">Add</button>
+                    ahora lo manejamos asi -->
+                    <button type="submit" class="btn btn-primary" [disabled]="!studentForm.valid">Add</button>   
+                    <!-- quitamos el (click)="metodo()" ya que eso ahora esta en la etiqueta form
+                    y ademas le agregamos un poco de validacion, es decir, no deja apretar el boton
+                    hasta que el studentForm no sea valido (en este caso, para que sea valido solo tiene
+                    que rellenar todos los campos que dicen required en el html)
+                    TAMBIEN acordate de cambiar el type="button" por type="submit" -->
+                </div>
+            </div>
+         </form>
+    </section>
+</main>

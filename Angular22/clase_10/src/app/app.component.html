@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <ul class="navbar-nav ml-auto">
+      <li class="nav-items">
+                  <!-- [routerLink] funciona como el href, y en app-routing/app-routing.modules.ts va a machear el /add con el path que le indiques -->
+                  <!-- por otro lado el routerLinkActive hace que al seleccionar este link, si la ruta coincide con algun path y todo va bien se le
+                  aplicara la clase css que le asignes al igual, en este caso "active" -->
+          <a class="nav-link" [routerLink]="['/add']" routerLinkActive="active" >Add Students</a>
+      </li>
+      <li class="nav-items">
+        <a class="nav-link" [routerLink]="['/list']" routerLinkActive="active" >List Students</a>
+      </li>
+  </ul>
+</nav> 
+
+<router-outlet></router-outlet>
+<!-- este router-outlet funciona para que en vez de tener que ir poniendo add-student, student-list etc esto lo hace dinamico -->

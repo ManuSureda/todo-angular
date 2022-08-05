@@ -1,0 +1,32 @@
+<main class="py-5">
+    <div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <label for="inputEmail" class="visually-hidden">Email address</label>
+        <input type="email" formControlName="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="visually-hidden">Password</label>
+        <input type="password" formControlName="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label>&nbsp;</label>        
+        <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+    </form>    
+    </div>
+<br>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+        <div *ngIf="email.errors?.required" class="alert alert-danger">
+            Email is required.
+        </div>
+        <div *ngIf="email.errors?.email" class="alert alert-danger">
+            Invalid email format.
+        </div>
+    </div>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+        <div *ngIf="password.errors?.required" class="alert alert-danger">
+            Password is required.
+        </div>
+    </div>
+
+    <div *ngIf="message" class="alert alert-danger">
+        {{ message }}
+    </div>
+
+</main>

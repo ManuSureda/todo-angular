@@ -1,0 +1,179 @@
+/****************************\
+------------------------------
+!!!!!!!SUPER-IMPORTANTE!!!!!!!
+------------------------------
+\****************************/
+
+IR A: tsconfig.json y comentar la linea "strict": true,
+
+
+
+INTERCEPTORS:  
+    intercepta cualquier tipo de request que se dispare en nuestra app, 
+    para realizar algun tipo de modificacion en ella, derivacion o cualquier
+    tarea anexa sobre ese request.
+
+sessionStorage: 
+    es una variable ya de js que guarda info que sera accesible para ese mismo tab 
+localStorage:
+    lo mismo pero a nivel browser, es decir, muchos tabs 
+
+
+1) generar la class con la que vas a pedir los datos del usuario para 
+logearlo
+    -ng g class models/login-credentials 
+    export class LoginCredentials {
+        email: string;
+        password: string;
+    }
+
+2) generar el servicio de authorization  
+
+    - ng g service auth/auth
+    - variables necesarias:
+        token = undefined;
+        userDetails = undefined;
+        loginUrl = "https://utn-avanzada2-tp-final.herokuapp.com/api/User/Login";
+        redirectUrl: string; <-- esto sirve mas adelante en el guard
+    
+    - constructor: HttpClient
+
+    - metodos:
+        - login(loginCredentials : LoginCredentials): Promise<any>
+            - si sale bien, almaceno el token que esta en el response de
+            la promise en el sessionStorage
+
+        - logout(): void {
+            sessionStorage.removeItem('token');
+            this.token = undefined;
+          }
+
+
+3)  generar login component
+    - formulario con los datos para loguearse (reactive forms)
+        - con esos datos bas a llenar una variable user-credentials (paso 1)
+
+    login.component.ts 
+        - hacer el FormGroup y sus getters 
+    
+        - constructor: necesito un AuthService (paso 2) y un Router
+        - invoco el metodo login del AuthService y mando como parametro 
+        el user-credentials con los datos del form 
+        - si el AuthService tiene token if (this.authService.token)
+            - let redirect = si authService tiene cargado el redirectUrl
+            lo direcciono ahi, sino a una ruta que yo quiera, en este caso 
+            '/products'
+            let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/products';
+            this.router.navigateByUrl(redirect);
+            (el redirectUrl se va a usar en el auth.guard.ts) 
+    
+
+4)  generar el interceptor de la authorization
+    - ng g service aut/auth-interceptor 
+    - implementar la interface HttpInterceptor 
+        - esto te obliga a implementar el metodo 
+    "intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>"
+    esto va a ir tomando todas las request que se ejecuten en nuestra app,
+    vamos a interceptarlas y vamos a agregarle el header con el token -->
+
+    - metodo intercept...
+        - tomar el token del sessionStorage.getItem('token')
+        - crear variable request = req (req = variable que viene por parametro)
+        - si el token no es undefined:
+        if(token){
+            request = req.clone({
+                setHeaders: {
+                authorization: `Bearer ${ token }`
+                }
+            })
+        }
+
+        (sacado de Angular.io)
+        return next.handle(req);
+            - cambio req por request 
+            - manejo los posibles errores -->
+        return next.handle(request).pipe(
+        catchError((err: HttpErrorResponse) => {
+
+            if (err.status === 401) {
+            this.router.navigateByUrl('/login');
+            } else if (err.status === 403) {
+            this.router.navigateByUrl('/login');
+            }
+
+            return throwError( err );
+        })
+        );
+        
+5)  hacer que tu app tome magicamente los request 
+    - vamos a app.modules.ts y en providers[] agrego esto -->
+    providers: [
+        { 
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptorService (paso 4),
+        multi: true
+        }
+    ],
+
+----------------------------
+-----------GUARDS-----------
+----------------------------
+
+antes de entrar a un component, la app va a verificar que los guards se verifiquen,
+en nuestro caso lo unico que va a hacer el guard es verificar el token de acceso.
+
+1) generar el archivo guard 
+    - ng g guard auth/auth 
+    - te va a pedir la interface: 
+        - elegi "CanActivate"
+
+    automaticamente te genera un metodo canActivate()
+
+    canActivate(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        return true;
+    }
+
+    - hay que cambiar ese route:... por next (no lo vamos a usar)
+    - agregar un constructor con AuthService y Router 
+    - (con el state obtengo la ruta que se disparo en al app)
+
+
+2) metodo canActivate()
+    - modificar router por next 
+    - cambiar el tipo de retorno por boolean 
+    - crear una variable url: string = state.url;
+    - return this.checkLogin(url);
+
+3) metodo checkLogin
+    toma la url que se disparo y verifica que el servicio (authService) tenga el token 
+    en ese caso retorna true, sino manda al authService la url 
+    y lo dirigimos al login y retornamos false
+
+    - verifico que authService tenga token 
+        - devuelvo true 
+    
+    - modifico la redirectUrl del auth service con la url que recivi por parametro,
+    esto es para que una vez que el usuario se loguee, lo mande directo a la pagina 
+    a la que intento acceder previamente.
+    - .navigate(['/login'])
+    - return false
+
+checkLogin(url: string): boolean {
+    console.log('IsLoggedIn:' + this.authService.token);
+
+    if (this.authService.token)
+      return true;
+
+    // Store the attempted URL for redirecting
+    this.authService.redirectUrl = url;
+
+    // Navigate to the login page with extras
+    this.router.navigate(['/login']);
+    
+    return false;
+  }
+
+4) en el app.routing le agrego a las rutas que quiera este guard ej: 
+{ path: "logout", component: LoginComponent, canActivate: [AuthGuard] },

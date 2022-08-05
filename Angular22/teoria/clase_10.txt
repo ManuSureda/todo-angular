@@ -1,0 +1,4 @@
+pagina 62
+los services se tienen que encargar SOLO de la percistencia de datos
+mientras que lo componentes se encargaran de solicitar datos al servicio o al usuario 
+y mostrar estos datos al usuario o al servicio para que los guarde 

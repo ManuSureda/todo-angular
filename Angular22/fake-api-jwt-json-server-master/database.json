@@ -1,0 +1,115 @@
+{
+  "products": [
+    {
+      "productId": 1,
+      "productCategoryId": 1,
+      "name": "apple",
+      "description": "its a red fruit",
+      "price": 525
+    },
+    {
+      "productId": 2,
+      "productCategoryId": 1,
+      "name": "orange",
+      "description": "its an orange fruit",
+      "price": 22
+    },
+    {
+      "productId": 3,
+      "productCategoryId": 2,
+      "name": "burger",
+      "description": "its meet",
+      "price": 11
+    },
+    {
+      "productId": 4,
+      "productCategoryId": 2,
+      "name": "milanesa",
+      "description": "its meet 2",
+      "price": 44
+    },
+    {
+      "productId": 5,
+      "productCategoryId": 3,
+      "name": "jamon",
+      "description": "charcuteria papa",
+      "price": 42
+    },
+    {
+      "productId": 6,
+      "productCategoryId": 3,
+      "name": "jamo22n",
+      "description": "charcuteria papa",
+      "price": 42
+    },
+    {
+      "productId": 7,
+      "productCategoryId": 1,
+      "name": "pineaple",
+      "description": "frutoidica",
+      "price": 212
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "1",
+      "name": "Stanton",
+      "last_name": "Kassulke",
+      "email": "Audra56@gmail.com",
+      "credit_card_type": "884",
+      "credit_card_number": "6373-2811-9405-0514",
+      "debt": 121.03
+    },
+    {
+      "clientId": "2",
+      "name": "William",
+      "last_name": "Crist",
+      "email": "Liliana.Stamm42@yahoo.com",
+      "credit_card_type": "849",
+      "credit_card_number": "6771-8957-5970-3987",
+      "debt": 946.98
+    },
+    {
+      "clientId": "3",
+      "name": "Lenny",
+      "last_name": "Jacobson",
+      "email": "Pietro47@yahoo.com",
+      "credit_card_type": "447",
+      "credit_card_number": "6763-5066-8216-4571",
+      "debt": 755.63
+    },
+    {
+      "clientId": "4",
+      "name": "Griffin",
+      "last_name": "Prohaska",
+      "email": "Russel.Hirthe17@gmail.com",
+      "credit_card_type": "468",
+      "credit_card_number": "6771417849423835",
+      "debt": 990.04
+    },
+    {
+      "clientId": "5",
+      "name": "Fannie",
+      "last_name": "Stracke",
+      "email": "Sigurd73@yahoo.com",
+      "credit_card_type": "540",
+      "credit_card_number": "4197-8293-2100-0672",
+      "debt": 428.17
+    }
+  ],
+  "families": [
+    {
+      "id": 1,
+      "name": "FM001"
+    },
+    {
+      "id": 2,
+      "name": "FM002"
+    },
+    {
+      "id": 3,
+      "name": "FM003"
+    }
+  ],
+  "transactions": []
+}

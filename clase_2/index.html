@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Clase_2</title>
+    <script src="myScript.js"></script>
+    <!-- <script src="alguna_pagina_magica.com/miescript"></script> -->
+    <!-- tecnicamente podes poner los script donde quieras, pero por una cuestion de orden
+    suelen ponerse en el head -->
+    <!-- conviene tener los script en archivos a parte para que la pagina cargue mas rapido -->
+</head>
+<body>
+    <p id="demo"></p>
+
+    <button type="button" onclick="myFunction()">Say Hello</button>
+
+    <script>
+        var x, y, z;
+        x = 5;
+        y = 6;
+        z = x + y;
+
+        document.getElementById("demo").innerHTML = 
+        "the value of z is: " + z + ".";
+
+        function myFunction(){
+            document.getElementById("demo").innerHTML = 
+            "Hello World!.";
+        }
+
+        var intValue = parseInt("1234"); // convierte la cadena "1234" a un int 1234
+        var floatValue = parseFloat("12.34"); // lo mismo que arriba pero en float
+        var error = parseInt("jhon");
+
+        console.log(intValue + " - " + floatValue + " - " + error);
+        // 1234 - 12.34 - NaN (creo que nan es null creeeeo o error, cuestion que esta mal)
+
+
+        console.log("---------------");
+        class Person {
+            constructor(firstName, lastName, age){
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this._age = age;
+            }
+
+            fullName(){
+                return this.firstName + ' ' + this.lastName;
+            }
+
+            set age(age){
+                this._age = age;
+            }
+
+            get age(){
+                return this._age;
+            }
+        }
+
+        let p = new Person("ana", "vazquez", 20);
+        console.log(p);
+        console.log("-------");
+        console.log(p.age);
+        console.log("-------");
+        console.log(p._age);
+        console.log("-------");
+        //console.log(p.age());// maal
+        console.log("-------");
+        console.log(p.fullName);// esto te tira el como esta echa la funcion
+        console.log("-------");
+        console.log(p.fullName());
+        
+        
+    </script>
+</body>
+</html>

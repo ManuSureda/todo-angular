@@ -1,0 +1,26 @@
+<button (click)="delete()" >borrar el 5</button>
+<main class="py-5">
+    <section id="listado" class="mb-5">
+         <div class="container">
+              <h2 class="mb-4">Student List</h2>
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name </th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let client of clientList">
+                    <th scope="row">{{ client.id  }}</th>
+                    <td>{{ client.firstName }}</td>
+                    <td>{{ client.lastName }}</td>
+                    <td>{{ client.email }}</td>
+                  </tr>                  
+                </tbody>
+              </table>
+         </div>
+    </section>
+</main>

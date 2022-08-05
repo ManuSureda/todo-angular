@@ -1,0 +1,31 @@
+EMPIEZA EN LA 58 
+en la clase 8 viste como usando el app.component comunicabas a los otros components (car-list y car-add)
+
+AHORA vamos a ver como usar el "routing" para comunicarlos 
+
+Angular Routing
+• El Router de Angular interpreta una URL como una instrucción para navegar a 
+una vista específica (Component) de nuestra aplicación así como también 
+permite pasar parámetros adicionales para presentar un contenido específico.
+El Router también realiza logs de su actividad en la history del browser 
+permitiendo el go back y forward entre otras cosas.
+• El Router de Angular no forma parte del Angular Core, se encuentra en su 
+propia library @angular/Router por lo tanto necesitamos impórtalo.
+• Es ideal crear un módulo propio para alojar nuestro Router con todas las rutas 
+que serán detectadas.
+Podemos crear el módulo con el comando ng generate module app-routing
+• El Router por defecto no posee rutas, debemos agregarlas a través de un 
+arreglo de routes llamado appRoutes.
+
+ni bien lo generas es practicamente igual al que te trae por defecto angular con el new project,
+pero acordate de agregarle el import @angular/Router 
+
+antes metias el tag de cada component, ahora usar <router-outlet></router-outlet>
+
+
+IMPORTANTE!!!!!!
+de base cuando haces el new project te va a crear el app-routing.module.ts 
+podes hacerlo ahi, o crear una carpeta nueva (app-routing) lo moves a esa carpeta
+y te vas a app.module.ts y modificas la ruta donde hace el import 
+import { AppRoutingModule } from './app-routing.module'; estaba asi 
+import { AppRoutingModule } from './app-routing/app-routing.module'; y queda asi 

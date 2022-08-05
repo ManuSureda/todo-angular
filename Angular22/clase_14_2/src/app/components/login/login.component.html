@@ -1,0 +1,28 @@
+<div class="text-center">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Shopping Cart Sign in</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" formControlName="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" formControlName="password" id="inputPassword" class="form-control" placeholder="Password" >        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+        <div *ngIf="email.errors?.['required']" class="alert alert-danger">
+            Email is required.
+        </div>
+        <div *ngIf="email.errors?.['email']" class="aler alert-danger">
+            Email format is invalid.
+        </div>
+    </div>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+        <div *ngIf="password.errors?.['required']" class="alert alert-danger">
+            Password is required.
+        </div>
+    </div>
+    <div *ngIf="message" >
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    </div>
+</div>

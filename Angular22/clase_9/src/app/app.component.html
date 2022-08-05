@@ -1,0 +1,6 @@
+<h1>This is the angular routing aplication</h1>
+<!-- ahora en lugar de ingresar tags como <fist></first> el router-outlet lo hace dinamicamente -->
+<!-- pero para indicarle a que url me tiene que llevar necesito el routerLink="aca va el path: que hayas especificado en app-routing.module.ts" -->
+<a routerLink="/first-component" routerLinkActive="active">first</a> <br>
+<a routerLink="/second-component/{{ num }}" routerLinkActive="active">second</a>
+<router-outlet></router-outlet>

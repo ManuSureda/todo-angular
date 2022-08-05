@@ -1,0 +1,93 @@
+la arquitectura de angular esta basada en ciertos "building blocks" que denominamos "ng modules"
+
+el ng modules nos permite dar un contexto en el cual vamos a introducir un conjunto de componentes  
+
+dentro de src encontramos app la cual contiene los archivos de los Components con logica de la aplicacion
+
+el app.component.ts esta a su vez relacionado con el "app.module.ts" que sera el modulo raiz de nuestra aplicacion
+
+MUY IMPORTANTE:
+app.module.ts define el root module de nuestra aplicación que indica a Angular 
+como ensamblar nuestra aplicación. A medida que vayamos agregando nuevos 
+componentes, deberemos declararlos en este archivo
+
+
+https://youtu.be/_xidulp-ytI?list=PL5zQBNVD_BMs51U7dXh4XtLXZwYiIh8Hd&t=2767
+definicion de @component selector, templateUrl y styleUrls 
+
+flujo practica:
+1º nos vamos a index.html y vamos a ver algo asi 
+<body>
+  <app-root></app-root> -> esto nos indica que ira al app.component.html (que a su vez usa los datos de el app.component.ts)
+</body>
+
+y por que el tag se llama <app-root></app-root> y el archivo app.component? 
+si te vas al app.component.ts (donde estan las variables y data que vas a podes usar en el html) 
+en el @Component vas a tener un selector: ... ahi es donde va el nombre del tag que va a injectar el html de ese component,
+en este caso el (app.component.html)
+
+(en app.component.ts)
+@Component({
+  selector: 'app-root', // -> nombre del tag html 
+  templateUrl: './app.component.html', // que injecta este archivo 
+  styleUrls: ['./app.component.css'] // y usa este css
+})
+
+--> ENTONCES:
+por cada module, vos tenes 
+   - myModuleName.component.ts -> aca van las variables y logica de la de ese html 
+    - selector: nombre del tag html 
+    - templateUrl: ubicacion del archivo html 
+    - styleUrls: ubicacion del css 
+   - myModuleName.component.html -> aca va la vista obviamente
+    - podes acceder a las variables del .ts mediante {{ nombreVariable }}
+    - si haces {{ array }} te muestra todo el array en una linea separado por comas 
+
+ahora generamos la clase "student" con el comando ng generate class models/student 
+
+export class Student { // el export nos indica que se puede utilizar en otro lado
+}
+
+ahora cuando quieras usar la clase Student en app.component.ts arriba del todo tenes que agregar: 
+import { Student } from './models/student';// -> hay que importar las clases que vayas a usar
+
+IMPORTANTEEEEEEEE!!!!!!!!!!!!!!!!
+cuando cree la class student 
+export class Student { 
+    firstName: string; 
+    lastName: string;
+}
+
+el profe la deja asi, sin metodos ni nada. pero angular me tira un error.
+lo podes resolver de dos maneras.
+1º poniendole un '!' al final de de firstName y lastName asi: 
+    firstName!: string;
+    lastName!: string;
+
+pero no estoy seguro de que hace eso...
+la otra forma es:
+2º 
+ir a tsconfig.json y establecer "strictPropertyInitialization": false
+3º firstName: string | undefined;
+
+---------------------------------
+ENTONCES -->
+el profe genero la clase student y la dejo con 
+export class Student { // el export nos indica que se puede utilizar en otro lado
+    firstName: string;
+    lastName: string;
+}
+
+y yo por probar cree:
+export class StudentV2 {
+    firstName: string;
+    lastName: string;
+
+    constructor(firstName: string, lastName: string){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+
+y despues en app.component.ts cree un new StudentV2('nombre','apellido');
+fuera del constructor() y pude acceder tambien como con el del profe

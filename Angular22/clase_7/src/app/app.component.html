@@ -1,0 +1,16 @@
+<h1>Welcome to {{ title }}</h1> <!--title es una variable que fue declarada en app.component.ts-->
+<p>My name is {{ name }}</p>
+
+<span>{{ fruits }}</span><!--va a mostrar el arreglo con cada elemento separado por una coma-->
+
+<ul>
+  <li *ngFor="let fruit of fruits" > {{ fruit }} </li><!--creo un bucle for, donde recorro el arreglo fruits que viene del .ts, y creo la variable
+  fruit que sera usada en el li-->
+</ul>
+
+<span *ngFor="let fruit of fruits" >{{ fruit }}, </span>
+
+<span *ngIf="food" >si hay comida</span>
+
+<p>this is studen: {{ student.firstName }} {{ student.lastName }}</p>
+<p>this is the second student: {{ student2.firstName }} {{ student2.lastName }}</p>

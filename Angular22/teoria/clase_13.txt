@@ -1,0 +1,77 @@
+validators 
+
+1º declarar un [formGroup]="studentForm" <-- en el html 
+2º uno o mas formControlName="lastName" <-- en el html 
+
+3º studentForm: FormGorup; <-- en el component.ts que corresponda
+4º aclarar en el ngOnInit() los new FormControl: 
+ngOnInit(): void {
+    this.studentForm = new FormGroup({
+        'nombreEnHtml': new FormControl(
+            valorPorDefecto,
+            [Validators.required, Validators.minLength(20)]// es decir los Validators sincronicos
+            [Async Validators]),
+        'lastName': new FormControl(
+            this.studet.lastName
+        ),
+        'asdf': .....
+    })
+}
+
+-----------------------------
+
+tambien tenemos los "Custom Validators" que pueden ser sync o Async
+
+basicamente son Validators que establecemos nosotros segun las reglas particulares de nuestro negocio
+
+para esto necesitas repasar RegExp 
+https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/regexp
+
+Literal notation and constructor
+There are two ways to create a RegExp object: a literal notation and a constructor.
+
+The literal notation's parameters are enclosed between slashes and do not use quotation marks.
+The constructor function's parameters are not enclosed between slashes but do use quotation marks.
+The following three expressions create the same regular expression object:
+
+let re = /ab+c/i; // literal notation
+let re = new RegExp('ab+c', 'i') // constructor with string pattern as first argument
+let re = new RegExp(/ab+c/, 'i') // constructor with regular expression literal as first argument (Starting with ECMAScript 6)
+
+ng generate class Custom-validators
+
+1º crear un metodo statico 
+2º resive por paramentro una RegExp 
+3º retorna una ValidatorFn
+
+static forbiddenWords(forbiddenWords: RegExp): ValidatorFn {        
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const forbidden = forbiddenWords.test(control.value);
+
+      return forbidden ? { 'forbiddenWords': {value: control.value} } : null;
+    };
+}
+
+this.studentForm = new FormGroup({
+        'nombreEnHtml': new FormControl(
+            valorPorDefecto,
+            [Validators.required, Validators.minLength(20), CustomValidator.forbiddenWords(/Juan/)],// es decir los Validators sincronicos
+            [Async Validators]),
+        'lastName': new FormControl(
+            this.studet.lastName
+        ),
+        'asdf': .....
+    })
+
+get firstName() { return this.studentForm.get('firstName'); } acordate de hacer los get en el .ts
+
+<!-- email.errors?.forbiddenWords
+si te vas al custom-validator.ts vas a ver que en el forbiddenWords() puede retornar un ValidationErrorObject
+aca evaluamos si es que email tiene cargado un errors con la key: forbiddenWords -->
+<div class="alert alert-danger" role="alert" *ngIf="email.errors?.forbiddenWords">
+    Invalid domain
+</div>
+
+para poder usar en el html *ngIf="!firstName.valid && ...."
+para poder usar el firstName como es un dato privado, en el .ts tenes que hacer el get de ese atrivuto 
+get firstName() { return this.studentForm.get('firstName'); }

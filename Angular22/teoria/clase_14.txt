@@ -1,0 +1,103 @@
+INTERCEPTORS: 
+    intercepta cualquier tipo de request que se dispare en nuestra app, 
+    para realizar algun tipo de modificacion en ella, derivacion o cualquier
+    tarea anexa sobre ese request.
+
+sessionStorage: 
+    es una variable ya de js que guarda info que sera accesible para ese mismo tab 
+localStorage:
+    lo mismo pero a nivel browser, es decir, muchos tabs 
+
+para que haga esto de manera automatica en el app.modules.ts --> 
+en providers: [] hay que agregar esto: 
+{
+    provide: HTTP_INTERCEPTORS,
+    useClass: elNombreDelServiceInterceptor,
+    multi: true
+}
+-->  queda asi:
+...
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ], ....
+
+1º crear la carpeta auth con:
+    a) auth-interceptor.service.ts  (ng g service auth/auth-interceptor)
+    b) auth.guard.ts                (ng g guard auth/auth)
+    c) auth.service.ts              (ng g service auth/auth)
+
+    a) lo generas mediante ng g service auth/auth-interceptor, como cualquier
+    otro service, solo que despues, entras en el archivo y haces que implemente 
+    la interface --> "HttpInterceptor". 
+
+    Esto va a obligarte a usar el metodo 
+    "intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{}"
+
+    esto va a estar leyendo las request que se hagan en tu app y verificando
+    que tengan el token, sino, los patea para el login -->
+
+    en el metodo intercept:
+    1º tratar de obtener el token desde el sessionStorage
+        - const token = sessionStorage.getItem('token');
+    2º el req que viene como parametro, lo pasamos a una variable
+        - let request = req;
+    3º verificas que exista el token 
+        - si existe:
+        clonas la request en una variable local con el header authorization: `Bearer ${ token }`
+        - si no:
+        return next.handle(request).pipe(
+            catchError((err: HttpErrorResponse) => {
+
+                if (err.status === 401) {
+                this.router.navigateByUrl('/login');
+                } else if (err.status === 403) {
+                this.router.navigateByUrl('/login');
+                }
+
+                return throwError( err );
+            })
+        );
+    4º realizar una llamada al siguiente request 
+        - return next.handle(req)....;
+            aca manejo que pasa segun el status code que resiva
+            veo a donde lo redirecciono
+    
+
+    por otro lado su constructor debe tener (private router: Router)
+    basicamente pido un Router para poder redireccionar a mi usuario a otro lado, en caso de que no este autenticado
+
+
+    c) es un servicio como cualquier otro, pero que lo utilizaremos especificamente
+    para realizar la autenticacion de nuestro user 
+
+    - declarar: 
+        - token = undefined;
+        - userDetails = undefined;
+        - loginUrl = "https://utn-avanzada2-tp-final.herokuapp.com/api/User/Login";
+        - redirectUrl: string;
+    
+    - el constructor necesita un HttpClient 
+    - metodo login(loginCredentials : LoginCredentials): Promise<any>
+        LoginCredentials es una clase creada por vos, que tiene lo q vos determines 
+        necesario para loguearte en la app (en este caso email y password)
+        --> hacemos un post a la api con ese loginCredentials y dependiendo 
+        del resultado:
+            - si es un 200 (si entro): 
+                guardo el token en un sessionStorage.setItem('token', this.token)
+    - metodo logout(): void 
+        va a hacer lo opuesto: va a eliminar del sessionStorage.removeItem('token');
+        y va a setear el this.token = undefined;
+
+2º crear en models:
+    a) login-credentials.ts         (ng g class login-credentials)
+
+    a)  export class LoginCredentials {
+            email!: string;
+            password!: string;
+        }
+    basicamente es lo que le mandas al metodo login del service para autenticar al usuario
+

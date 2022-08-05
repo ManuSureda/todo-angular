@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase_2_output</title>
+</head>
+<body>
+    <h1>hola</h1>
+    <p id="p"></p>
+
+    <button type="button" onclick="alertFunction()">alert</button>
+    <button type="button" onclick="window.alert('esto es un alert v2')">alert v2</button>
+    <button type="button" onclick="writeFunction()">write</button>
+    <button type="button" onclick="document.write('<h1>nuevo titulo</h1>')">write v2</button>
+
+    <script>
+        function alertFunction(){
+            window.alert("esto es un alert");
+        }
+
+        function writeFunction(){
+            document.open();
+            document.write("<h1>nuevo titulo</h1>");
+            document.close();
+        }
+    </script>
+</body>
+</html>

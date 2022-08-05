@@ -1,0 +1,163 @@
+<!DOCTYPE html><!-- DOCTYPE: define el tipo de documento, en esto caso "html" --> 
+<html lang="en"><!-- elemento raiz de una pagina HTML -->
+<head> <!-- contiene meta informacion sobre el documento -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase1</title><!-- titulo del documento "pestaña del browser" -->
+    <!-- el resto de tags que pueden ir aca, son tags que no van a mostrar contenido dentro del documento,
+    sino que van a definir cierta info necesaria para acompañar este documento html, como por ejemplo:
+    podemos definir ciertas "sub-tags" que van a dar meta info o meta data que va a ser accesible por el browser
+    para poder indexar nuestro documento html en estos buscadores y facilitar la busqueda y que sean encontrados,
+    tambien permiete ponderar y darle un peso a su contenido, a la hora de buscarlo a travez de los navegadores -->
+</head>
+<body><!-- contenido visible por el usuario -->
+    <h1>This is a heading 1</h1>
+    <h2>This is a heading 2</h2>
+    <h3>This is a heading 3</h3>
+
+    <a href="https://google.com">This is a link to google</a>
+
+    <br>
+
+    <img 
+    src="https://www.caracteristicas.co/wp-content/uploads/2017/02/perro-3-e1561679226953.jpg" 
+    alt="salio mal bro"
+    title="texto que se muestra al hacer un hover over en la imagen"
+    width="240"
+    height="200"><!--podes no poner el width y el height y se van a mostrar con los valores default de la imagen que elegiste 
+                     pero no modifica el tamaño del archivo, osea el tiempo de carga -->
+
+    <img 
+    src="https://www.caracteristicas.co/wp-content/uploads/2017/02/perro-3-e1561679226953.jpg" 
+    alt="salio mal bro">
+    
+    <img 
+    src="este_link_esta_mal.com" 
+    alt="salio mal bro">
+
+    <br>
+    <br>
+<!--Trabajanod con listas-->
+        
+    <h2>Unorder List example</h2>
+    <ul><!--ul define una lista des-ordenada -->
+        <li>Coffe</li> <!-- li= "list item" o item de lista -->
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
+    <!--suponiendo que no uses ningun style ni nada mas: -->
+    <!--te va a aparecer cada item con un punto a la izq -->
+
+    <h2>Ordered List example</h2>
+    <ol>
+        <li>Coffe</li> 
+        <li>Tea</li>
+        <li>Milk</li>
+    </ol>
+    <!--suponiendo que no uses ningun style ni nada mas: -->
+    <!--va a estar enumerado: 1. coffe, 2. tea ....-->
+
+    <h2>Description List example</h2>
+    <dl>
+        <dt>Coffe</dt><!--dt corresponde a un termino-->
+        <dd>- black hot drink</dd><!--corresponde a la descripcion de un termino (dt)-->
+        <dt>Milk</dt>
+        <dd>- white cold drink</dd>
+    </dl>    
+    <!--suponiendo que no uses ningun style ni nada mas: -->
+    <!--
+    Coffe
+        - black hot drink
+    Milk
+        - white cold drink 
+    -->
+
+    <!-- este se muestra en horizontal -->
+    <h2>Unorderd List but horizontal</h2>
+    <ul>
+        <li style="display: inline">a</li>
+        <li style="display: inline">b</li>
+        <li>c</li>
+        <li style="display: inline">d</li>
+        <!-- 
+              a b
+            * c
+              d
+         -->
+    </ul>
+
+    <!--Dando formato al texto-->
+    <br>
+    <b>This text is bold (negrita) </b>
+    <br>
+
+    <strong>This text is strong (define texto importante)</strong>
+
+    <br>
+
+    <i>This text is italic (cursiva) </i>
+    
+    <br>
+
+    <em>This text is emphasized (enfatizado)</em>
+
+    <h2>HTML <small>define texto pequeño</small> Formatting</h2> <!--HTML y Formatting se veran iguales, pero define... se ve mas chico-->
+
+    <h2>HTML <mark>texto resaltado</mark>Formatting</h2>
+
+    <p>My favorite color is <del>blue</del> red </p> <!--del: el blue va a estar tachado-->
+    <p>My favorite <ins>color</ins> is red </p><!-- color va a ir subrayado-->
+    <p>this is <sub>subscripted</sub> text</p>
+    <p>this is <sup>superscripted</sup> text</p>
+
+    <!-- ----------------------------------------- -->
+    <!-- Ellementos de bloque -->
+
+    <br>
+    <!-- mirar en notas -->
+    <div>Hello World</div> 
+    <span>Hello World</span>
+<!-- agrupa el contenido header de una tabla -->
+
+<br>
+<br>
+    <!-- tablas -->
+    <table border="1">
+        <caption>Employee Information</caption>  <!-- define el titulo de una tabla -->
+        <thead><!-- agrupa el contenido header de una tabla -->
+            <tr><!-- define una fila de tabla -->
+                <th>Firstname</th><!-- define una celda de ENCABEZADO de tabla -->
+                <th>Lastname</th>
+                <th>Age</th>
+            </tr>
+        </thead> 
+        <tbody><!-- agrupa el contenido body de una tabla -->
+            <tr>
+                <td>Jill</td><!--define una celda de tabla-->
+                <td>Smith</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>80</td>
+            </tr>
+        </tbody>
+        <tfoot><!--agrupa el contenido del footer en una tabla-->
+            <tr>
+                <td colspan="2">&nbsp;</td>
+                <!-- colspan y rowspan hace que se "expanda" x cantidad columnas o filas respectivamente -->
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+    <br>
+
+</body>
+</html>

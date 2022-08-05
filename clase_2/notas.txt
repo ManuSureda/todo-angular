@@ -1,0 +1,94 @@
+ECMAScript 
+ECMAScript es el lenguaje de scripting para 
+páginas Web.
+• Trabaja del lado del cliente (client-side), es decir en el browser.
+• Puede cambiar contenido HTML
+• Puede cambiar valores de atributos HTML
+• Puede cambiar estilos CSS
+• En síntesis puede cambiar cualquier cosa dentro del DOM
+(Document Object Model)
+
+String.trim() elimina espacios en blanco al comienzo y final de un string
+Array.isArray() nos permite determinar si una variable es un array o no 
+
+la forma mas antigua de declarar variables era mediante la palabra var ,  a partir de
+ES2015 aparece let y const 
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+DIFERENCIAS ENTRE var let y const: 
+- Las declaraciones var tienen un ámbito global o un ámbito función/local, mientras que 
+  let y const tienen un ámbito de bloque.
+
+- Las variables var pueden ser modificadas y re-declaradas dentro de su ámbito; 
+  las variables let pueden ser modificadas, pero no re-declaradas; 
+  las variables const no pueden ser modificadas ni re-declaradas.
+
+- Todas ellas se elevan a la parte superior de su ámbito. Pero mientras que las variables var
+  se inicializan con undefined, let y const no se inicializan.
+
+- Mientras que var y let pueden ser declaradas sin ser inicializadas, const debe ser inicializada durante la declaración.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+exponential operator (**)
+
+Array.prototype.includes("hola") determina si un array tiene un determinado arreglo dentro 
+
+string padding is a string method that is used to pad the start or end of a string with a specific string to a certain length. 
+
+var array = 'TechOnTheNet';
+console.log(array.padStart(20,'A')); va a agregar tantas A al comienzo del string array, hasta que este llegue a una long de 20: 
+AAAAAAAATechOnTheNet <- resultado
+
+rest/spread properties
+The Spread Syntax (also known as the Spread Operator) is another excellent feature of ES6. As the name indicates, 
+it takes an iterable (like an array) and expands (spreads) it into individual elements.
+https://www.freecodecamp.org/news/javascript-object-destructuring-spread-operator-rest-parameter/#:~:text=Spread%20syntax%20(also%20known%20as,opposite%20of%20the%20Spread%20syntax.
+
+, async
+itearion, Promise.finally(), agregados a RegExp
+
+Funciones y Eventos
+• Las funciones pueden llamarse entre sí o al producirse un evento
+• Un evento detecta la acción de un usuario y permite disparar una acción 
+determinada
+• Tipos de manejadores de eventos: en línea, propiedad y método 
+AddEventListener()
+• Eventos comunes:
+onLoad: Terminar de cargar una página o frame (entrar)
+onMouseOver: Pasar el mouse por encima de un elemento
+onMouseOut: Quitar el mouse de encima del elemento
+onMouseMove: Mover el mouse sobre el documento
+onKeyUp: Presionar una tecla
+onClick: Hacer click con el mouse
+onChange: Modificar texto en un control de edición. Sucede al perder el foco
+onSelect: Seleccionar texto en un control de edición
+onFocus: Situar el foco en un control
+onBlur: Perder el foco un control
+onSubmit: Enviar un formulario
+onReset: Restablecer un formulario
+
+
+Referenciando elementos
+• getElementById(): Obtiene un elemento a través de su id. Los id deberían ser 
+únicos para cada elemento, pero si hubiese mas de uno con el mismo id, este 
+método retorna el primero
+• getElementsbyName(): Obtiene una colección de elementos que tienen el name
+especificado. Se puede usar la propiedad length para determinar la cantidad de 
+elementos devueltos y poder iterar sobre estos
+• getElementsByClassName(): Obtiene una colección de elementos que tienen el 
+name especificado. Se puede usar la propiedad length para determinar la cantidad 
+de elementos devueltos
+• getElementsByTagName(): Obtiene una colección de elementos que 
+corresponden al tag especificado. Se puede usar la propiedad length para 
+determinar la cantidad de elementos devueltos. Si se especifica el parámetro ‘*’ se 
+retorna todos los elementos del documento
+• querySelector(): Obtiene el primer elemento que coincide con el selector CSS 
+especificado. Se pueden seleccionar elementos HTML a través de id, class, type, 
+attribute, attribute values, etc.
+• querySelectorAll(): Similar al anterior, solo que en lugar de retornar la primer 
+ocurrencia, retorna todas
+
+
+

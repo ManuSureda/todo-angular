@@ -1,0 +1,294 @@
+{
+  "products": [
+    {
+      "productId": 1,
+      "productCategoryId": 1,
+      "name": "apple",
+      "description": "its a red fruit",
+      "price": 525
+    },
+    {
+      "productId": 2,
+      "productCategoryId": 1,
+      "name": "orange",
+      "description": "its an orange fruit",
+      "price": 22
+    },
+    {
+      "productId": 3,
+      "productCategoryId": 2,
+      "name": "burger",
+      "description": "its meet",
+      "price": 11
+    },
+    {
+      "productId": 4,
+      "productCategoryId": 2,
+      "name": "milanesa",
+      "description": "its meet 2",
+      "price": 44
+    },
+    {
+      "productId": 5,
+      "productCategoryId": 3,
+      "name": "jamon",
+      "description": "charcuteria papa",
+      "price": 42
+    },
+    {
+      "productId": 6,
+      "productCategoryId": 3,
+      "name": "jamo22n",
+      "description": "charcuteria papa",
+      "price": 42
+    },
+    {
+      "productId": 7,
+      "productCategoryId": 1,
+      "name": "pineaple",
+      "description": "frutoidica",
+      "price": 212
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "1",
+      "name": "Stanton",
+      "last_name": "Kassulke",
+      "email": "Audra56@gmail.com",
+      "credit_card_type": "884",
+      "credit_card_number": "6373-2811-9405-0514",
+      "debt": 121.03
+    },
+    {
+      "clientId": "2",
+      "name": "William",
+      "last_name": "Crist",
+      "email": "Liliana.Stamm42@yahoo.com",
+      "credit_card_type": "849",
+      "credit_card_number": "6771-8957-5970-3987",
+      "debt": 946.98
+    },
+    {
+      "clientId": "3",
+      "name": "Lenny",
+      "last_name": "Jacobson",
+      "email": "Pietro47@yahoo.com",
+      "credit_card_type": "447",
+      "credit_card_number": "6763-5066-8216-4571",
+      "debt": 755.63
+    },
+    {
+      "clientId": "4",
+      "name": "Griffin",
+      "last_name": "Prohaska",
+      "email": "Russel.Hirthe17@gmail.com",
+      "credit_card_type": "468",
+      "credit_card_number": "6771417849423835",
+      "debt": 990.04
+    },
+    {
+      "clientId": "5",
+      "name": "Fannie",
+      "last_name": "Stracke",
+      "email": "Sigurd73@yahoo.com",
+      "credit_card_type": "540",
+      "credit_card_number": "4197-8293-2100-0672",
+      "debt": 428.17
+    }
+  ],
+  "clientv2": [
+    {
+     "companyId": 1,
+     "first_name": "Una",
+     "last_name": "MacGyver",
+     "email": "Katarina_Rolfson@hotmail.com",
+     "id": "1"
+    },
+    {
+     "companyId": 1,
+     "first_name": "Toby",
+     "last_name": "Connelly",
+     "email": "Alysa_Shields@gmail.com",
+     "id": "2"
+    },
+    {
+     "companyId": 1,
+     "first_name": "Ramona",
+     "last_name": "Huels",
+     "email": "Trace87@gmail.com",
+     "id": "3"
+    },
+    {
+     "companyId": 2,
+     "first_name": "Favian",
+     "last_name": "Johns",
+     "email": "Adell.Prohaska88@hotmail.com",
+     "id": "4"
+    },
+    {
+     "companyId": 3,
+     "first_name": "Garrison",
+     "last_name": "Herman",
+     "email": "Maye1@yahoo.com",
+     "id": "5"
+    },
+    {
+     "companyId": 4,
+     "first_name": "Rita",
+     "last_name": "Hudson",
+     "email": "Travis79@gmail.com",
+     "id": "6"
+    },
+    {
+     "companyId": 4,
+     "first_name": "Claudia",
+     "last_name": "Graham",
+     "email": "Tevin61@hotmail.com",
+     "id": "7"
+    },
+    {
+     "companyId": 5,
+     "first_name": "Jovani",
+     "last_name": "Cartwright",
+     "email": "Berenice_Mohr@hotmail.com",
+     "id": "8"
+    },
+    {
+     "companyId": 4,
+     "first_name": "Major",
+     "last_name": "Kulas",
+     "email": "Cierra.Gutkowski48@hotmail.com",
+     "id": "9"
+    },
+    {
+     "companyId": 4,
+     "first_name": "Santos",
+     "last_name": "Wehner",
+     "email": "Georgette.Veum@yahoo.com",
+     "id": "10"
+    },
+    {
+     "companyId": 6,
+     "first_name": "Keyon",
+     "last_name": "Bechtelar",
+     "email": "Otto.Nicolas@hotmail.com",
+     "id": "11"
+    },
+    {
+     "companyId": 7,
+     "first_name": "Keanu",
+     "last_name": "Quitzon",
+     "email": "Blair.Kreiger84@yahoo.com",
+     "id": "12"
+    },
+    {
+     "companyId": 8,
+     "first_name": "Edwardo",
+     "last_name": "O'Connell",
+     "email": "Shanelle17@hotmail.com",
+     "id": "13"
+    },
+    {
+     "companyId": 9,
+     "first_name": "Michelle",
+     "last_name": "Runolfsson",
+     "email": "Jerod29@gmail.com",
+     "id": "14"
+    },
+    {
+     "companyId": 10,
+     "first_name": "Clay",
+     "last_name": "Kautzer",
+     "email": "Tracey.Gibson60@hotmail.com",
+     "id": "15"
+    },
+    {
+     "companyId": 2,
+     "first_name": "Queen",
+     "last_name": "Ferry",
+     "email": "Arden.Koelpin59@hotmail.com",
+     "id": "16"
+    },
+    {
+     "companyId": 3,
+     "first_name": "Darrin",
+     "last_name": "Crooks",
+     "email": "Gabe_West46@gmail.com",
+     "id": "17"
+    },
+    {
+     "companyId": 1,
+     "first_name": "Abdiel",
+     "last_name": "Kris",
+     "email": "Sydni.Metz@hotmail.com",
+     "id": "18"
+    },
+    {
+     "companyId": 8,
+     "first_name": "Barbara",
+     "last_name": "Stokes",
+     "email": "Kristoffer89@yahoo.com",
+     "id": "19"
+    },
+    {
+     "companyId": 8,
+     "first_name": "Dovie",
+     "last_name": "Koch",
+     "email": "Magdalen.Green69@hotmail.com",
+     "id": "20"
+    }
+   ],
+  "companies": [
+    {
+     "company_name": "Legros, Bins and Hand",
+     "active": true,
+     "id": "1"
+    },
+    {
+     "company_name": "Mayert - Greenfelder",
+     "active": false,
+     "id": "2"
+    },
+    {
+     "company_name": "Ullrich - Rosenbaum",
+     "active": false,
+     "id": "3"
+    },
+    {
+     "company_name": "D'Amore - Kuhn",
+     "active": true,
+     "id": "4"
+    },
+    {
+     "company_name": "Ryan LLC",
+     "active": false,
+     "id": "5"
+    },
+    {
+     "company_name": "Kemmer - Kshlerin",
+     "active": false,
+     "id": "6"
+    },
+    {
+     "company_name": "O'Kon, Stokes and Greenholt",
+     "active": false,
+     "id": "7"
+    },
+    {
+     "company_name": "Runolfsson - Shields",
+     "active": true,
+     "id": "8"
+    },
+    {
+     "company_name": "Cummerata LLC",
+     "active": false,
+     "id": "9"
+    },
+    {
+     "company_name": "Schaefer - Welch",
+     "active": false,
+     "id": "10"
+    }
+   ]
+}

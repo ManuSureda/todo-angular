@@ -1,0 +1,8 @@
+<div class="container">
+  <app-car-add [carListCarAdd]="carListApp"></app-car-add>
+  <app-car-list [carList]="carListApp" 
+                (selectedCarEvent)="showSelectedVehicle($event)"></app-car-list>
+  <!-- <p>{{ variableEnCarAddComponent }}</p> esto tira error, ya que no tengo la data que se encuentra en 
+  car-add.component.ts-->
+  <h4 *ngIf="carApp">Selected vehicle: {{ carApp.brand }} {{ carApp.model }}</h4>
+</div>

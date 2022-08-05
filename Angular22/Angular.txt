@@ -1,0 +1,70 @@
+primero tenes que asegurarte de tener instalado node.js lo cual tambien deveria instalar npm 
+
+VERSION NODE
+npm --version 
+
+VERSION CLI 
+ng --version
+
+INSTALAR CLI (en caso de que no este instalado)
+npm install -g @angular/cli 
+
+SI BAJAS UN PROYECTO Y NO TIENE EL node_modules
+npm install
+
+CREAR PROYECTO
+ng new nombreDelProyecto
+
+LEVANTAR EL SERVER
+ng serve -o
+
+CREAR UNA CLASS 
+ng generate class nombreCarpeta/nombreClass
+
+GENERAR COMPONENTE
+ng g component components/nombre-del-component
+
+GENERAR SERVICIO
+ng g service services/nombre-del-servicio
+
+GENERAR MODULO 
+ng g module nombreCarpeta/nombre-modulo 
+
+GENERAR MODULO 
+ng g guard auth/nombreDelGuard
+
+INSTALAR BOOSTRAP
+npm install bootstrap
+(despues tenes que ir al archivo "angular.json" 
+buscas "stules": [
+    "y aca agregas la ruta de donde se instalo", (por default creo q es: "node_modules/bootstrap/dist/css/bootstrap.min.css")
+    "src/styles.css"
+]
+tambien, aunque esto deberia hacerse automatico, en package.json deberia aparecen en dependencies: {en algun lado "bootstrap": y la version})
+
+ROUTING
+ng g module app-routing
+
+([ngModel])
+cuando trabajes con eso acordate de en el app.module.ts agregar :
+
+import { FormsModule } from '@angular/forms';//importante
+
+
+  @NgModule({
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,DECLARA CADA COMPONENTE
+    StudentAddComponent,DECLARA CADA COMPONENTE
+    StudentViewComponent,DECLARA CADA COMPONENTE
+    StudentListComponentDECLARA CADA COMPONENTE
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,//<<<< import it here
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

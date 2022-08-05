@@ -1,0 +1,113 @@
+empieza en la pagina 55 del pdf 
+vamos a ver como comunicarnos entre componentes 
+
+como ya vimos angular se va a basar en una serie de modules, los cuales a su vez estan compuestos por components 
+modules tienen sus component.html (visual), component.ts(logica) y css para el style 
+a su vez cada uno de esos "feature modules" representan dentro de ese module una "UNIDAD FUNCIONAL COMPLETA", que
+deberia ser en cierta forma independiente del resto de la app.
+
+obviamente necesitaremos comunicar estos componentes entre si, de forma de pasar variables objetos, para poder mantener 
+el flujo de la app y realizar distintas operaciones con esos datos 
+
+ver pagina 55 del pdf 
+
+parent serian los .ts y child serian los .html 
+
+--> parado en el child (el algo.component.html), con un () le voy a mandar data al parent (algo.component.ts)
+y con un [] voy a traer info del parent.
+
+y en el parent (el algo.component.ts) ahi si uso 
+@Input()
+variable : tipoDeVariable -->esto va a ser accesible desde el child 
+
+@Output()
+variable = new eventEmitter<tipo>(); -->esto va a estar esperando a que se produzca un cambio 
+
+@Input() es writable es decir que permite recibir datos que se van sobre escribiendo
+y en el html va a ir con [] como por ejemplo [carList]="carList"
+
+@Output() es un obserbable, es decir que va a estar esperando algun tipo de cambio
+y en el html va a ir con () y van a ser eventEmitter<tipo>() en el .ts
+(selectedCarEvent)="showSelectedCar($event)" es output 
+
+como ahora tenemos 2 feature modules que van a necesitar data del otro, hay que convertir el app.component en el pasa manos de info 
+app.component.html (el html basico donde podias meter otros "tags")
+             @imput 
+<app-car-add [carList]="carList"></app-car-add>
+                                    @output                    ($event -> contiene la data enviada por el child)
+<app-car-list [carList]="carList" (selectedCarEvent)="showSelectedCar($event)"
+
+ENTONCES --> 
+vos tenes el app.component.ts donde se va a hacer el pasamanos entre los distintos modules y el html 
+
+yo tengo el parent de parents por asi decirlo que seria app con:
+ - app.component.ts
+    -contiene las variables y metodos 
+ - app.component.html 
+    -aca voy a meter los tags de los otros components como add-car y car-list 
+    -usando los [] y () comunico esta seccion del html con los otros component.ts 
+
+app.component.html
+              @imput    sorce del parent
+<app-car-add [carList]="carList">       </app-car-add>
+gracias a eso, cuando te vayas a car-add.component.html/.ts vas a poder trabajar con el carList
+
+Finalmente podemos decir que la estructura de uso de @Input() es: <app-car-add [carList]="carList"></app-car-add>, donde:
+app-car-add: es el child component selector
+[carList] :es el target (@Input() property del child)
+“carList”: es el source (property del parent)
+
+                          source
+                @input    parent        @Output
+<app-car-list [carList]="carList" (selectedCarEvent)="showSelectedCar($event)"></app-car-list>
+eso de arriba esta en app.component.html 
+si nos vamos al car-list.component.ts vamos a tener:
+@input()
+carList : Array<car> = new Array<car>(); 
+
+@output()
+selectedCarEvent = new EventEmitter<car>();
+
+ahora en car-list.component.html 
+                        function del 
+                   car-list.component.ts
+<button ..... (click)="selectCar(car)">select</button>
+volviendo al car-list.component.ts
+selectCar(car : Car){
+    this.selectedCarEvent.emit(car)
+}
+
+entonces el parent (app.component.html) en: 
+<app-car-list .... (selectedCarEvent)  =  "showSelectedCar ($event)"
+donde: 
+(selectedCarEvent) es un metodo en car-list.component.ts
+y 
+showSelectedCar es un metodo en app.component.ts
+y 
+($event) es la data generada en (selectedCarEvent)
+
+osea que lo que vaya entre (algo) o [algo] van al child y en su .ts van a tener 
+@Input()
+algo = lo que sea
+@Output()
+algo = new EventEmitter<tipo>();
+y lo que vaya a la derecha del ="algoParent" va en el parent 
+
+--------
+[(ngModel)]="brand" ->esto es un "two way data binding" eso quiere decir que si lo modifico en el .html se modifica en el .ts
+y viceversa 
+
+[(ngModel)]="variableen.ts" esto viene del "template-driven forms"
+
+IMPORTANTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+si vas a usar el [(ngModel)] te tenes que ir a app.module.ts y agregar lo siguiente: 
+
+import { FormsModule } from '@angular/forms'; // -> necesario para el [(ngModul)]
+....
+imports: [
+    ...,
+    ...,
+    FormsModule // -> necesario para el [(ngModul)]
+  ],
+...
+

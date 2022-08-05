@@ -1,0 +1,13 @@
+<!-- app.component.html -->
+<div class="container">
+  <!--           @Input  |arrayList declarado en app.component.ts   -->
+  <app-car-add [carList]="carList"></app-car-add>
+  <div class="p-3"></div>
+  <!--           @Input  arrayList    -->
+  <app-car-list [carList]="carList" 
+     (selectedCarEvent) = "showSelectedCar($event)"></app-car-list>
+  <!--  @Output         |    metodo       parametro    
+  car-list.component.ts | app.component.ts-->
+  <div class="p-3"></div>
+  <h4>Selected vehicle: {{ car.brand }} {{ car.model }}</h4>
+</div>

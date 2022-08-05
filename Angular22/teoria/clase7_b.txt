@@ -1,0 +1,55 @@
+<app-root></app-root> ahi es como q injerta el app.component.html
+
+supongamos qu estas en app.component.html y tenes por ahi un {{ titlle }} eso quiere decir que eso es una variable que esta
+en el ts (app.component.ts)
+
+routing:
+
+te generas un module app-routing (ng generate module app-routing)
+te vas a ese module y importas Routes y RouterModule from @angular/router
+import { Routes, RouterModule } from '@angular/router';
+y despues el import de cada componente ej:
+import { FirstComponent } from './components/first/first.component';
+
+te creas una constante llamada routes de tipo Routes
+const routes: Routes = [
+  { path: 'first', component: FirstComponent },
+  { path: 'second/:id', component: SecondComponent },
+  { path: '', redirectTo: '/first', pathMatch: 'full' }, //en caso de no proveer ninguna ruta,
+  // o mejor dicho, una ruta vacia, en vez de cargar un componente especifico redirije al componente first.
+  //pathMatch: 'full' -> angular lo que hace es leer la url de izq a der, y lo machea con la primer
+  // rout que le coincida, haciendo el pathMatch: 'full' lo obligas a que tiene que coincidir
+  // toooooda la route no solo ser similar, ya que si alguna ruta empieza por un espacio
+  // (re que no se puede, pero es pa que entiendas) cargaria ruta, 
+  //para que haga el redirectTo tiene que toda la ruta ser ''
+  { path: '**', component: NotFoundComponent }// ** es como un comodin, para cualquier ruta
+  // que no sea las anteriores (default view en caso de que no se de una valida)
+];
+
+y en el @NgModule
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],//aca lo importo para poder modificarlo
+  exports: [RouterModule]//aca lo exporto para poder usarlo en otras rutas
+})
+
+si queres recivir info de la url tipo un add/:id necesitamos el ActivatedRoute,
+esto es un servicio que contiene info del ruteo que se hizo para llegar a este componente 
+(componente en el que estes trabajando ej: add-student.component.ts)
+
+lo siguiente deberia pasar automatico cuando lo metes en el constructor el private route: ActivatedRoute
+import { ActivatedRoute } from '@angular/router';
+al export class le agregas un implements implements OnInit
+
+export class SecondComponent implements OnInit {
+  id: string;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+  }
+}
+
+el ActivatedRoute trae todo el ruteo de como se llego hasta ese compounent www.jamon.com/tu/vieja/82
+snapshot: nos proovee el valor inicial de la ruta disparada
+el paramMap tendriamos los parametros y con el .get(id) agarramos el que coincida con eso
